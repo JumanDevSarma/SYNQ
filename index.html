@@ -16,8 +16,7 @@
   <meta property="og:description" content="A cyberpunk campus network for students: skills, collabs, events, and side-hustles in one place. Coming soon." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://synqnet.in" />
-  <!-- Optional: replace with actual preview image later -->
-  <!-- <meta property="og:image" content="https://synq.org.in/og-image.png" /> -->
+  <!-- <meta property="og:image" content="https://synqnet.in/og-image.png" /> -->
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
@@ -43,7 +42,7 @@
     }
 
     html, body {
-      height: 100%;
+      min-height: 100%;
       background: radial-gradient(circle at top, #0f172a 0, #020617 45%, #000 100%);
       color: var(--soft-white);
       font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -53,8 +52,6 @@
 
     body {
       display: block;
-      /* align-items: center;
-      justify-content: center; */
     }
 
     .noise-overlay {
@@ -120,7 +117,6 @@
       position: relative;
       z-index: 2;
       width: min(960px, 100% - 3rem);
-      /* max-height: min(640px, 100% - 3rem); */
       border-radius: 24px;
       border: 1px solid rgba(148, 163, 184, 0.45);
       background:
@@ -137,6 +133,7 @@
       display: grid;
       grid-template-rows: auto 1fr auto;
       gap: 1.25rem;
+      margin: 1.5rem auto 2.5rem;
     }
 
     .shell::before {
@@ -162,6 +159,7 @@
       text-transform: uppercase;
       letter-spacing: 0.22em;
       color: var(--muted);
+      flex-wrap: wrap;
     }
 
     .shell-header-left {
@@ -227,13 +225,9 @@
     }
 
     @media (max-width: 800px) {
-      body {
-        overflow-y: auto;
-      }
-
       .shell {
-        max-height: none;
-        margin: 1.5rem 0;
+        width: calc(100% - 2rem);
+        margin: 1.25rem auto 2.5rem;
       }
 
       .shell-main {
@@ -616,20 +610,14 @@
           THE UNDERGROUND STUDENT NETWORK OF ASSAM DOWN TOWN UNIVERSITY
         </div>
 
-<strong>SYNQ</strong> wasn't made for the general crowd, it was created for the few who move
-before the rest even realize something is happening. This network connects skills,
-opportunities, projects, teams, events, and information the campus doesn't organize...
-but desperately needs.
-
-The people who find SYNQ now won't just use it, they'll shape it.
-When the rest of the campus finally discovers this exists, the advantage will already
-belong to the ones who were here first.
-
-This isn't a launch.
-
-It's an awakening.
-
-
+        <p class="hero-copy">
+          <strong>SYNQ</strong> was not made for the general crowd. It was created for the few who move
+          before the rest even realize something is happening. This network connects skills,
+          opportunities, projects, teams, events, and information the campus does not organize...
+          but desperately needs. The people who find SYNQ now will not just use it, they will shape it.
+          When the rest of the campus finally discovers this exists, the advantage will already belong
+          to the ones who were here first. This is not a launch. It is an awakening.
+        </p>
 
         <p class="highlight-line">
           PHASE 01 // ADTU CAMPUS LAUNCH // ACCESS LIMITED
@@ -654,20 +642,20 @@ It's an awakening.
               <span class="code">ID: ADTU-UNDERGROUND</span>
             </div>
             <p class="metric-sub">
-              When you see this screen, you’re in the right place. This is the official launch
-              pad for the <strong>underground student network</strong>.
+              When you see this screen, you are in the right place. This is the official launch
+              pad for the underground student network.
             </p>
           </div>
 
           <div class="metric-card">
             <div class="metric-label">Planned Modules</div>
             <div class="chips-row">
-              <span class="chip hot">Top 20 “Most Wanted” board</span>
-              <span class="chip">Skill & collab listings</span>
-              <span class="chip">Events & fests</span>
-              <span class="chip">Freelance & gigs</span>
+              <span class="chip hot">Top 20 "Most Wanted" board</span>
+              <span class="chip">Skill &amp; collab listings</span>
+              <span class="chip">Events &amp; fests</span>
+              <span class="chip">Freelance &amp; gigs</span>
               <span class="chip">Marketplace</span>
-              <span class="chip">Clubs & communities</span>
+              <span class="chip">Clubs &amp; communities</span>
             </div>
           </div>
 
@@ -708,7 +696,7 @@ It's an awakening.
       <div>
         <span>STATUS: PRE-LAUNCH BUILD</span>
         <span class="dot-sep"></span>
-        <span>FOLLOW CAMPUS RUMOURS FOR ACCESS CODES</span>
+        <span>YOU WERE NOT INVITED. YOU FOUND IT.</span>
       </div>
     </footer>
   </main>
