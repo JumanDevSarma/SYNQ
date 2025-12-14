@@ -2,711 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SYNQ — The Underground Student Network</title>
-
-  <!-- Mobile / responsive -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO -->
-  <meta name="description" content="SYNQ is the underground student network of Assam down town University — a all-in-one hub for skills, collabs, events, freelancing, and campus life. Launching soon." />
-  <meta name="keywords" content="SYNQ, underground student network, Assam down town University, ADTU, students, freelancing, events, campus, cyberpunk" />
-
-  <!-- Open Graph (for link previews) -->
-  <meta property="og:title" content="SYNQ — The Underground Student Network" />
-  <meta property="og:description" content="A all-in-one campus network for students: skills, collabs, events, and side-hustles in one place. Coming soon." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://synqnet.in" />
-  <!-- <meta property="og:image" content="https://synqnet.in/og-image.png" /> -->
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --bg: #02030a;
-      --bg-alt: #050816;
-      --neon-cyan: #00f5ff;
-      --neon-magenta: #ff00ff;
-      --neon-yellow: #f9f871;
-      --soft-white: #f5f5f5;
-      --muted: #9ca3af;
-      --accent: #22c55e;
-      --danger: #f97373;
-      --border-subtle: rgba(148, 163, 184, 0.35);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      min-height: 100%;
-      background: radial-gradient(circle at top, #0f172a 0, #020617 45%, #000 100%);
-      color: var(--soft-white);
-      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
-
-    body {
-      display: block;
-    }
-
-    .noise-overlay {
-      pointer-events: none;
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
-      mix-blend-mode: soft-light;
-      z-index: 1;
-    }
-
-    .scanline {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(to bottom,
-        rgba(255, 255, 255, 0.06) 1px,
-        transparent 1px
-      );
-      background-size: 100% 2px;
-      mix-blend-mode: soft-light;
-      opacity: 0.25;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .grid-bg {
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: radial-gradient(circle at center, black 0, transparent 70%);
-      opacity: 0.8;
-      z-index: 0;
-    }
-
-    .orb {
-      position: fixed;
-      width: 420px;
-      height: 420px;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 30% 10%, rgba(56, 189, 248, 0.3), transparent 55%),
-        radial-gradient(circle at 70% 90%, rgba(244, 63, 94, 0.25), transparent 60%);
-      filter: blur(24px);
-      opacity: 0.9;
-      z-index: 0;
-      transform: translate3d(0, 0, 0);
-      animation: floatOrb 22s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatOrb {
-      0% {
-        transform: translate3d(-12%, -18%, 0) scale(1);
-      }
-      100% {
-        transform: translate3d(18%, 12%, 0) scale(1.1);
-      }
-    }
-
-    .shell {
-      position: relative;
-      z-index: 2;
-      width: min(960px, 100% - 3rem);
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      background:
-        radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(244, 63, 94, 0.15), transparent 60%),
-        linear-gradient(to bottom right, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.98));
-      backdrop-filter: blur(26px);
-      box-shadow:
-        0 0 0 1px rgba(15, 23, 42, 0.95),
-        0 25px 80px rgba(15, 23, 42, 0.9),
-        0 0 120px rgba(56, 189, 248, 0.45),
-        0 0 120px rgba(244, 63, 94, 0.35);
-      padding: 1.25rem 1.5rem 1.75rem;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 1.25rem;
-      margin: 1.5rem auto 2.5rem;
-    }
-
-    .shell::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      border: 1px solid transparent;
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.7), rgba(168, 85, 247, 0.3), rgba(248, 250, 252, 0.1)) border-box;
-      mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
-      opacity: 0.45;
-      pointer-events: none;
-    }
-
-    .shell-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.25rem;
-      font-family: "Share Tech Mono", monospace;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: var(--muted);
-      flex-wrap: wrap;
-    }
-
-    .shell-header-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      background: radial-gradient(circle at 0 0, rgba(34, 197, 94, 0.45), transparent 55%);
-      font-size: 0.7rem;
-      color: #bbf7d0;
-    }
-
-    .status-pill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
-    }
-
-    .shell-header-right {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      text-align: right;
-      flex-wrap: wrap;
-    }
-
-    .tag {
-      padding: 0.2rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .divider {
-      height: 1px;
-      width: 100%;
-      background: linear-gradient(
-        to right,
-        transparent,
-        rgba(148, 163, 184, 0.8),
-        transparent
-      );
-      opacity: 0.7;
-    }
-
-    .shell-main {
-      display: grid;
-      grid-template-columns: minmax(0, 3.5fr) minmax(0, 2.5fr);
-      gap: 2rem;
-      padding-inline: 0.25rem;
-      align-items: center;
-    }
-
-    @media (max-width: 800px) {
-      .shell {
-        width: calc(100% - 2rem);
-        margin: 1.25rem auto 2.5rem;
-      }
-
-      .shell-main {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1.5rem;
-      }
-    }
-
-    .hero-label {
-      font-family: "Share Tech Mono", monospace;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .hero-label::before {
-      content: "";
-      width: 32px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--neon-cyan));
-      opacity: 0.7;
-    }
-
-    .logo-word {
-      font-size: clamp(2.9rem, 5vw, 3.75rem);
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      position: relative;
-      display: inline-block;
-      margin-bottom: 0.4rem;
-    }
-
-    .logo-word-main {
-      position: relative;
-      z-index: 2;
-      text-shadow:
-        0 0 6px rgba(15, 23, 42, 0.9),
-        0 0 22px rgba(56, 189, 248, 0.8),
-        0 0 48px rgba(244, 63, 94, 0.85);
-      background: linear-gradient(120deg, #e5e7eb, #e0f2fe, #f9a8d4);
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: glitch-pulse 1.8s infinite alternate;
-    }
-
-    .logo-word-glitch {
-      position: absolute;
-      inset: 0;
-      mix-blend-mode: screen;
-      filter: blur(0.6px);
-      opacity: 0.45;
-    }
-
-    .logo-word-glitch::before,
-    .logo-word-glitch::after {
-      content: "SYNQ";
-      position: absolute;
-      inset: 0;
-      clip-path: inset(0 0 50%);
-    }
-
-    .logo-word-glitch::before {
-      left: -2px;
-      text-shadow: -2px -1px 0 var(--neon-cyan);
-      animation: glitch-1 1.4s infinite alternate-reverse;
-    }
-
-    .logo-word-glitch::after {
-      left: 2px;
-      text-shadow: 2px 1px 0 var(--neon-magenta);
-      animation: glitch-2 1.2s infinite alternate;
-    }
-
-    @keyframes glitch-pulse {
-      0% { filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.7)); }
-      100% { filter: drop-shadow(0 0 18px rgba(244, 63, 94, 0.9)); }
-    }
-
-    @keyframes glitch-1 {
-      0% { clip-path: inset(0 0 40% 0); }
-      50% { clip-path: inset(0 0 60% 0); transform: translate(-1px, 1px); }
-      100% { clip-path: inset(0 0 45% 0); transform: translate(-0.5px, -0.5px); }
-    }
-
-    @keyframes glitch-2 {
-      0% { clip-path: inset(50% 0 0 0); }
-      50% { clip-path: inset(35% 0 0 0); transform: translate(1px, -1px); }
-      100% { clip-path: inset(55% 0 0 0); transform: translate(0.5px, 0.5px); }
-    }
-
-    .tagline {
-      font-size: 0.98rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: rgba(209, 213, 219, 0.8);
-      margin-bottom: 1.1rem;
-    }
-
-    .hero-copy {
-      font-size: 0.95rem;
-      line-height: 1.65;
-      color: var(--muted);
-      max-width: 32rem;
-      margin-bottom: 1.3rem;
-    }
-
-    .hero-copy strong {
-      color: #e5e7eb;
-      font-weight: 600;
-    }
-
-    .highlight-line {
-      font-family: "Share Tech Mono", monospace;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: var(--neon-yellow);
-      opacity: 0.9;
-      margin-bottom: 1.4rem;
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      align-items: center;
-    }
-
-    .btn-primary {
-      position: relative;
-      padding: 0.7rem 1.6rem;
-      border-radius: 999px;
-      border: 1px solid rgba(56, 189, 248, 0.8);
-      background:
-        radial-gradient(circle at top left, rgba(56, 189, 248, 0.4), transparent 60%),
-        linear-gradient(to right, rgba(15, 23, 42, 0.96), rgba(8, 47, 73, 0.96));
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-family: "Share Tech Mono", monospace;
-      color: #e0f2fe;
-      cursor: default;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-      box-shadow:
-        0 0 18px rgba(56, 189, 248, 0.6),
-        0 0 36px rgba(37, 99, 235, 0.4);
-    }
-
-    .btn-primary::after {
-      content: "▚";
-      font-size: 0.85rem;
-      opacity: 0.9;
-    }
-
-    .pill-secondary {
-      padding: 0.55rem 1rem;
-      border-radius: 999px;
-      border: 1px dashed rgba(148, 163, 184, 0.7);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-family: "Share Tech Mono", monospace;
-      color: var(--muted);
-      backdrop-filter: blur(10px);
-    }
-
-    .pill-secondary span {
-      color: var(--neon-cyan);
-    }
-
-    .side-panel {
-      border-radius: 20px;
-      padding: 1.1rem 1rem 1rem;
-      border: 1px solid var(--border-subtle);
-      background:
-        radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 70%),
-        radial-gradient(circle at bottom, rgba(244, 63, 94, 0.12), transparent 70%),
-        rgba(15, 23, 42, 0.98);
-      box-shadow:
-        0 0 40px rgba(15, 23, 42, 0.9),
-        0 0 70px rgba(56, 189, 248, 0.35);
-      display: grid;
-      gap: 0.9rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .side-panel::before {
-      content: "SYNQ // CAMPUS SYSTEM";
-      position: absolute;
-      top: 0.65rem;
-      right: 1rem;
-      font-family: "Share Tech Mono", monospace;
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: rgba(148, 163, 184, 0.6);
-    }
-
-    .side-panel-grid {
-      display: grid;
-      gap: 0.65rem;
-      font-family: "Share Tech Mono", monospace;
-      font-size: 0.74rem;
-      color: var(--muted);
-    }
-
-    .metric-card {
-      border-radius: 0.9rem;
-      padding: 0.7rem 0.75rem;
-      border: 1px solid rgba(51, 65, 85, 0.9);
-      background:
-        linear-gradient(to bottom right, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.98));
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .metric-label {
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.64rem;
-      opacity: 0.8;
-    }
-
-    .metric-value {
-      font-size: 0.95rem;
-      color: #e5e7eb;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.5rem;
-    }
-
-    .metric-value span.code {
-      font-family: "Share Tech Mono", monospace;
-      font-size: 0.7rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .metric-sub {
-      font-size: 0.7rem;
-      opacity: 0.7;
-    }
-
-    .chips-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.1rem;
-    }
-
-    .chip {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 0.18rem 0.55rem;
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(209, 213, 219, 0.85);
-    }
-
-    .chip.hot {
-      border-color: rgba(248, 250, 252, 0.9);
-      color: #fef9c3;
-      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.3), transparent 70%);
-    }
-
-    .countdown {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 0.4rem;
-    }
-
-    .countdown-box {
-      border-radius: 0.7rem;
-      border: 1px solid rgba(55, 65, 81, 0.95);
-      padding: 0.4rem 0.65rem;
-      text-align: center;
-      min-width: 3.5rem;
-    }
-
-    .countdown-box-value {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #e5e7eb;
-    }
-
-    .countdown-box-label {
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: rgba(148, 163, 184, 0.8);
-      margin-top: 0.12rem;
-    }
-
-    .footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      font-family: "Share Tech Mono", monospace;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      flex-wrap: wrap;
-    }
-
-    .footer span.emphasis {
-      color: rgba(209, 213, 219, 0.9);
-    }
-
-    .dot-sep::before {
-      content: "•";
-      margin: 0 0.5rem;
-      opacity: 0.7;
-    }
-
-    @media (max-width: 600px) {
-      .footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .logo-word {
-        letter-spacing: 0.14em;
-      }
-    }
-
-    @media (max-width: 600px) {
-  .hero-copy {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    max-width: none;
-  }
-
-  .shell {
-    padding: 1rem 1.1rem 1.6rem;
-  }
-
-  .shell-main {
-    gap: 1.25rem;
-  }
-}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SYNQ — Underground Campus Network</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="noise-overlay"></div>
-  <div class="scanline"></div>
-  <div class="grid-bg"></div>
-  <div class="orb"></div>
 
-  <main class="shell" aria-label="SYNQ coming soon screen">
-    <header class="shell-header">
-      <div class="shell-header-left">
-        <div class="status-pill">
-          <span class="status-pill-dot"></span>
-          <span>SYSTEM ONLINE // PRE-LAUNCH</span>
-        </div>
-        <span>DOMAIN: SYNQNET.IN</span>
-      </div>
-      <div class="shell-header-right">
-        <span class="tag">Campus: ADTU</span>
-        <span class="tag">Mode: Underground Network</span>
-      </div>
-    </header>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">SYNQ</div>
 
-    <div class="divider"></div>
+<nav class="links">
+  <a href="#" class="nav-item home">Home</a>
 
-    <section class="shell-main">
-      <div>
-        <div class="hero-label">PROJECT LOADING...</div>
+  <a href="#" class="nav-item highlight">Most Wanted</a>
+  <a href="#" class="nav-item accent">Events</a>
+  <a href="#" class="nav-item accent">Communities</a>
+  <a href="#" class="nav-item accent">Exchange</a>
+  <a href="#" class="nav-item accent">Freelance</a>
 
-        <div class="logo-word" aria-label="SYNQ">
-          <span class="logo-word-main">SYNQ</span>
-          <span class="logo-word-glitch" aria-hidden="true"></span>
-        </div>
+  <a href="#" class="nav-item vision">Help</a>
+</nav>
 
-        <div class="tagline">
-          THE UNDERGROUND STUDENT NETWORK OF ASSAM DOWN TOWN UNIVERSITY
-        </div>
+    <button class="cta">Join</button>
+  </header>
 
-        <p class="hero-copy">
-          <strong>SYNQ</strong> was not made for the general crowd. It was created for the few who move
-          before the rest even realize something is happening. This network connects skills,
-          opportunities, projects, teams, events, and information the campus does not organize...
-          but desperately needs. The people who find SYNQ now will not just use it, they will shape it.
-          When the rest of the campus finally discovers this exists, the advantage will already belong
-          to the ones who were here first. This is not a launch. It is an awakening.
-        </p>
+  <!-- MAIN CONTENT -->
+  <main class="wrap">
 
-        <p class="highlight-line">
-          PHASE 01 // ADTU CAMPUS LAUNCH // ACCESS LIMITED
-        </p>
-
-        <div class="cta-row">
-          <button class="btn-primary" type="button">
-            Coming Online Soon
-          </button>
-          <div class="pill-secondary">
-            Next: <span>Campus-only private beta</span>
-          </div>
-        </div>
-      </div>
-
-      <aside class="side-panel" aria-label="System telemetry">
-        <div class="side-panel-grid">
-          <div class="metric-card">
-            <div class="metric-label">Network Identity</div>
-            <div class="metric-value">
-              <span>SYNQ // v0.1-alpha</span>
-              <span class="code">ID: ADTU-UNDERGROUND</span>
-            </div>
-            <p class="metric-sub">
-              When you see this screen, you are in the right place. This is the official launch
-              pad for the underground student network.
-            </p>
-          </div>
-
-          <div class="metric-card">
-            <div class="metric-label">Planned Modules</div>
-            <div class="chips-row">
-              <span class="chip hot">Top 20 "Most Wanted" board</span>
-              <span class="chip">Skill &amp; collab listings</span>
-              <span class="chip">Events &amp; fests</span>
-              <span class="chip">Freelance &amp; gigs</span>
-              <span class="chip">Marketplace</span>
-              <span class="chip">Clubs &amp; communities</span>
-            </div>
-          </div>
-
-<div class="metric-card">
-  <div class="metric-label">ORIGIN PROTOCOL</div>
-  <div class="metric-value">
-    <span>A Team Reload Initiative</span>
-    <span class="code">@thereloadsquad</span>
-  </div>
-  <p class="metric-sub">
-    Operations, concept and early deployment handled off-grid by Team Reload.
-    If you know, you know.
-  </p>
-  <div class="chips-row" style="margin-top:0.35rem;">
-    <span class="chip hot">CORE OPS</span>
-    <span class="chip">FIELD: CAMPUS UNDERGROUND</span>
-    <span class="chip">CHANNEL: IG</span>
-  </div>
-</div>
-        </div>
-      </aside>
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow">UNDERGROUND STUDENT NETWORK</p>
+      <h1>SYNQ</h1>
+      <p class="subtext">GUWAHATI, ASSAM</p>
     </section>
 
-    <footer class="footer">
-      <div>
-        <span class="emphasis">SYNQ</span>
-        <span class="dot-sep"></span>
-        <span>Underground student network // Assam down town University</span>
+    <!-- WHAT IS SYNQ -->
+    <section class="panel glass">
+      <h2>What SYNQ is</h2>
+      <p>
+        SYNQ is a campus-bound discovery system built for students
+        who want to find their true potential and connect with people who are actually doing things.
+      </p>
+      <p>
+        Skills, projects, events, ideas, freelancing, clubs —
+        everything exists inside one local network.
+      </p>
+      <p class="muted">
+        For the students. By the students.  
+        Talent is everywhere — it just needs a place to SYNQ.
+      </p>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="grid">
+      <div class="panel">
+        <h3>Signal over noise</h3>
+        <p>
+          SYNQ doesn’t reward popularity.
+          It rewards relevance.
+        </p>
+        <p>
+          What people interact with rises.
+          What they ignore fades.
+        </p>
       </div>
-      <div>
-        <span>STATUS: PRE-LAUNCH BUILD</span>
-        <span class="dot-sep"></span>
-        <span>YOU WERE NOT INVITED. YOU FOUND IT.</span>
+
+      <div class="panel">
+        <h3>Local first</h3>
+        <p>
+          SYNQ starts inside one city, one campus.
+        </p>
+        <p>
+          Dense, real connections matter more than global reach.
+        </p>
       </div>
-    </footer>
+    </section>
+
+    <!-- TEAM RELOAD -->
+    <section class="panel glass">
+      <h2>Team Reload × SYNQ</h2>
+      <p>
+        Team Reload is the core team building SYNQ.
+        A small group of students experimenting, designing, and engineering the system.
+      </p>
+      <p>
+        No hierarchy. No noise.  
+        Just building and iterating.
+      </p>
+      <p class="muted">
+        The next level is coming soon.
+      </p>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="manifesto">
+      <p>Talent doesn’t need permission.</p>
+      <p>It needs visibility.</p>
+      <p class="muted">SYNQ provides the signal.</p>
+    </section>
+
   </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>SYNQ © Underground Student Network</p>
+  </footer>
+
 </body>
 </html>
